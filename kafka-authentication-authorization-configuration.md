@@ -57,6 +57,12 @@ sasl.enabled.mechanisms=PLAIN
 super.users=User:admin
 ```
 
+### Start Kafka broker
+```properties
+export KAFKA_OPTS="-Djava.security.auth.login.config=<KAFKA_HOME>/config/jaas-kafka-server.conf"
+bin/kafka-server-start.sh config/server.properties
+```
+
 ### Create kafka authentication client configuration called `kafka-client.properties`
 ```properties
 security.protocol=SASL_PLAINTEXT
