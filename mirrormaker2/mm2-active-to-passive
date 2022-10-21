@@ -1,10 +1,16 @@
 # Run with ./bin/connect-mirror-maker.sh connect-mirror-maker.properties 
 
+# A note on topic creation: https://issues.apache.org/jira/browse/KAFKA-10582
+
 # specify any number of cluster aliases
 clusters = A, B
 
 A.bootstrap.servers = 127.0.0.1:9092
 B.bootstrap.servers = 127.0.0.1:9093
+
+# Set alias to empty, otherwise the alias will be prepended when topics created on target
+# Note on alias being prepended with target topic name https://stackoverflow.com/questions/59390555/is-it-possible-to-replicate-kafka-topics-without-alias-prefix-with-mirrormaker2
+replication.policy.class=org.apache.kafka.connect.mirror.IdentityReplicationPolicy
 
 # enable and configure individual replication flows
 A->B.enabled = true
