@@ -3,9 +3,6 @@
 # specify any number of cluster aliases
 clusters = A, B
 
-# connection information for each cluster
-# This is a comma separated host:port pairs for each cluster
-# for e.g. "A_host1:9092, A_host2:9092, A_host3:9092"
 A.bootstrap.servers = 127.0.0.1:9092
 B.bootstrap.servers = 127.0.0.1:9093
 
@@ -21,22 +18,12 @@ B->A.topics = .*
 # Setting replication factor of newly created remote topics
 replication.factor=1
 
-############################# Internal Topic Settings  #############################
-# The replication factor for mm2 internal topics "heartbeats", "B.checkpoints.internal" and
-# "mm2-offset-syncs.B.internal"
-# For anything other than development testing, a value greater than 1 is recommended to ensure availability such as 3.
+availability such as 3.
 checkpoints.topic.replication.factor=1
 heartbeats.topic.replication.factor=1
 offset-syncs.topic.replication.factor=1
 
-# The replication factor for connect internal topics "mm2-configs.B.internal", "mm2-offsets.B.internal" and
-# "mm2-status.B.internal"
-# For anything other than development testing, a value greater than 1 is recommended to ensure availability such as 3.
+availability such as 3.
 offset.storage.replication.factor=1
 status.storage.replication.factor=1
 config.storage.replication.factor=1
-
-# customize as needed
-# replication.policy.separator = _
-# sync.topic.acls.enabled = false
-# emit.heartbeats.interval.seconds = 5
